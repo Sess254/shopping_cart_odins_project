@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 
-export default function Home(){
+function Home(){
     return (
-        <div>
-            <h1>Welcome to the odin Store</h1>
-            <P>Browse our latest products</P>
+        <div className="home">
+            <h1 className="home-heading">Welcome to the odin Store</h1>
+            <p className="home-text">Browse our latest products</p>
             <Link to="/products">
-                <button>Shop Now</button>
+                <button className="shop-btn">Shop Now</button>
             </Link>
         </div>
     );
 }
+
+export default Home;

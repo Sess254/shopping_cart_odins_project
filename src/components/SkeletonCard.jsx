@@ -1,0 +1,10 @@
+export default function SkeletonCard() {
+    return (
+        <div className="card skeleton">
+            <div className="skeleton-img" />
+            <div className="skeleton-line long" />
+            <div className="skeleton-line short" />
+
+        </div>
+    );
+}

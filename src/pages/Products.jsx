@@ -1,7 +1,8 @@
 import { useState, useEffect, use } from "react";
-import ProductCard from "../components/ProductCard";
+import ProductCard  from "../components/ProductCard";
+import SkeletonCard from "../components/SkeletonCard";
 
-export default function Products() {
+function Products() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -25,14 +26,23 @@ export default function Products() {
     }, []);
 
 
-    if (loading) return <p>Loading ...</p>;
+    // if (loading) return <p>Loading ...</p>;
     if (error) return <p>Error: {error}</p>
 
     return (
         <div className="container">
-            {products.map((item) (
+            {loading
+                ? Array.from({length: 20}).map((_, i) => <SkeletonCard key={i}/>)
+                : products.map((item) => (
+                    <ProductCard key={item.id} item={item}/>
+                ))
+            }
+
+            {/* {products.map((item) => (
                 <ProductCard key={item.id} item={item} />
-            ))}
+            ))} */}
         </div>
     );
 }
+
+export default Products;

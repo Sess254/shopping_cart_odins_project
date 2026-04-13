@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .825em;
+    padding: 1em 0;
+    border-bottom: 1px solid grey;
+    
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+}
+
+.home {
+    text-align: center;
+    margin: 10em auto;
+}
+
+.home-heading, .home-text {
+    margin-bottom: 1em;
+}
+
+.shop-btn {
+    padding: .5em 1em;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+img {
+    width: 150px;
+    height: 150px;
+}
+
+.card {
+    width: 330px;
+    height: 330px;
+    text-align: center;
+    border: 1px solid rgb(172, 168, 168);
+    padding: .5em;
+    border-radius: 5px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    gap: 1em;
+    margin-top: 1em;
+    padding: 1em;
+}
+
+.add-to-cart-btn {
+    margin-top: 1em;
+    padding: .5em 1em;
+    font-weight: bold;
+}
+
+.skeleton {
+    pointer-events: none;
+}
+
+.skeleton-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    background: #e0e0e0;
+}
+
+.skeleton-line {
+    height: 16px;
+    border-radius: 4px;
+    background: #e0e0e0;
+    margin-top: 10px;
+}
+
+.skeleton-line.long  { width: 90%; }
+.skeleton-line.short { width: 50%; }
+
+/* shimmer animation */
+.skeleton-img,
+.skeleton-line {
+    background: linear-gradient(
+        90deg,
+        #353434 25%,
+        #000000 50%,
+        #0d0c0c 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+
+@media (min-width: 768px){
+    .nav {
+        gap: 3em;
+    }
+
+    .home {
+        margin: 20em auto;
+    }
+
+    .card {
+        width: 380px;
+        height: 380px;
+    }
+
+    img {
+        width: 200px;
+        height: 200px;
+    }
+
+}

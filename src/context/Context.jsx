@@ -1,4 +1,4 @@
-import { useCallback, useContext, createContext, useEffect, useState, useMemo } from "react";
+import { useCallback, useContext, createContext, useState, useMemo } from "react";
 
 const CartContext = createContext();
 
@@ -6,7 +6,7 @@ export function CartProvider({ children }) {
     const [cart, setCart] = useState([]);
 
 
-    const addTocart = useCallback((item) => {
+    const addToCart = useCallback((item) => {
         setCart((prev) => {
             const inCart = prev.find((p) => p.id === item.id);
             if (inCart) {
@@ -40,13 +40,13 @@ export function CartProvider({ children }) {
     );
 
     return (
-        <CartContext.Provider value={{ cart, addTocart, removeFromCart, totalItems, totalPrice, clearCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, totalItems, totalPrice, clearCart }}>
             {children}
         </CartContext.Provider>
     );
 }
 
 
-export function userCart() {
+export function useCart() {
         return useContext(CartContext);
     }

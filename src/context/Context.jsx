@@ -1,0 +1,52 @@
+import { useCallback, useContext, createContext, useEffect, useState, useMemo } from "react";
+
+const CartContext = createContext();
+
+export function CartProvider({ children }) {
+    const [cart, setCart] = useState([]);
+
+
+    const addTocart = useCallback((item) => {
+        setCart((prev) => {
+            const inCart = prev.find((p) => p.id === item.id);
+            if (inCart) {
+                return prev.map((p) => p.id === item.id ? {...p, qty: p.qty + 1} : p);
+            }
+            return [...prev, {...item, qty: 1}];
+        });
+    }, []);
+
+
+    const removeFromCart = useCallback((id) => {
+        setCart((prev) => {
+            const inCart = prev.find((p) => p.id === id);
+            if (inCart > 1) {
+                return prev.map((p) => p.id === id ? {...prev, qty: p.qty - 1} : p);
+            }
+            return prev.filter((p) => p.id !== id);
+        });
+    }, []);
+
+    const clearCart = useCallback(() => setCart([]), []);
+
+    const totalPrice = useMemo(
+        () => cart.reduce((acc, item) => acc + item.price * item.qty, 0),
+        [cart]
+    );
+
+    const totalItems = useMemo(
+        () => cart.reduce((acc, item) => acc + item.qty, 0),
+        [cart]
+    );
+
+    return (
+        <CartContext.Provider value={{ cart, addTocart, removeFromCart, totalItems, totalPrice, clearCart }}>
+            {children}
+        </CartContext.Provider>
+    );
+}
+
+
+export function userCart() {
+        return useContext(CartContext);
+    }

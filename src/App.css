@@ -115,7 +115,7 @@ img {
 
 @media (min-width: 768px){
     .nav {
-        gap: 3em;
+        justify-content: space-around;
     }
 
     .home {
@@ -132,4 +132,16 @@ img {
         height: 200px;
     }
 
+}
+
+@media (min-width: 992px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 400px);
+        justify-content: center;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+    }
 }

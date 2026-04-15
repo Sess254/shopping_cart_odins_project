@@ -18,13 +18,13 @@ export function CartProvider({ children }) {
 
 
     const removeFromCart = useCallback((id) => {
-        setCart((prev) => {
-            const inCart = prev.find((p) => p.id === id);
-            if (inCart > 1) {
-                return prev.map((p) => p.id === id ? {...prev, qty: p.qty - 1} : p);
-            }
-            return prev.filter((p) => p.id !== id);
-        });
+        setCart((prev) => 
+            prev.reduce((acc, item) => {
+                if(item.id !== id) return [...acc, item];
+                if(item.qty > 1) return [...acc, {...item, qty: item.qty - 1}];
+                return acc;
+            }, [])
+        );
     }, []);
 
     const clearCart = useCallback(() => setCart([]), []);
